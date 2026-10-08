@@ -21,6 +21,8 @@ public extension Date {
         timezone: TimeZone? = TimeZone.current
     ) -> String {
         let dateFormatter = DateFormatter()
+        // Keep serialized dates independent of the user's calendar and hour-cycle preferences.
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = timezone
         let date = dateFormatter.string(from: self)
